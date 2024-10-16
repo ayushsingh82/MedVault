@@ -9,8 +9,8 @@ function Navbar() {
             <a href='/'>Oasis</a>
           </div>
           <div className='flex justify-center flex-1 space-x-8 text-center'>
-            <h1 className='font-medium text-lg text-white'>
-              <a href='/'>Dashboard</a>
+            <h1 className='font-medium text-sm text-white'>
+              <a href='/prescription'>Prescription</a>
             </h1>
           </div>
           <div className='text-white'>
