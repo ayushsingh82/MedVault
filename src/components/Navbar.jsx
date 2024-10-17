@@ -12,6 +12,9 @@ function Navbar() {
             <h1 className='font-medium text-sm text-white'>
               <a href='/prescription'>Prescription</a>
             </h1>
+            <h1 className='font-medium text-sm text-white'>
+              <a href='/pharmacy'>Pharmacy</a>
+            </h1>
           </div>
           <div className='text-white'>
            <ConnectButton/>

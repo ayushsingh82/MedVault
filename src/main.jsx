@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom'
 import Home from './components/Home.jsx'
 import Navbar from './components/Navbar.jsx'
 import Prescription from './components/Prescription.jsx'
+import Pharmacy from './components/Pharmacy.jsx'
 
 import '@rainbow-me/rainbowkit/styles.css';
 
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
     <Route>
     <Route path='/' element={<Home/>}/>
     <Route path='/prescription' element={<Prescription/>}/>
+    <Route path='/pharmacy' element={<Pharmacy/>}/>
     </Route>
   )
 )
