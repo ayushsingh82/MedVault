@@ -14,6 +14,28 @@ const Home = () => {
             <div className="tag text-black mt-[100px]">Version 1.0 is here</div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter bg-gradient-to-b from-blue-700 via-blue-500 to-blue-500 text-transparent bg-clip-text mt-6">
             Confidential Health Records at 
+            <motion.div
+            className="md:w-[478px] md:mt-[30px] "
+            initial={{ x: 300, opacity: 0 }}  // Start off-screen to the right
+            animate={{ x: 0, opacity: 1 }}    // Slide in from the right
+            transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }} // 2-second delay for initial animation
+          >
+            {/* Infinite Y-axis up and down movement */}
+            <motion.img
+    src="https://cdn.prod.website-files.com/6600cac2bfd894b77d543d34/660ef942cf174beabb191e8f_Oasis%20Subscribe%20Logo%201.svg"
+    alt="Aligned Layer Image"
+    className="rounded-lg shadow-md h-[100px] w-[200px] bg-transparent"
+    animate={{ 
+      y: [-10, 10, -10],  // Moves 10px up and down
+    }}
+    transition={{ 
+      repeat: Infinity,    // Infinite loop
+      duration: 5,         // Duration for the full loop
+      ease: 'easeInOut',   // Smooth easing
+    }}
+  />
+
+          </motion.div>
             </h1>
             <p className="text-xl text-black tracking-tight mt-6">
              Making privacy easy for all
