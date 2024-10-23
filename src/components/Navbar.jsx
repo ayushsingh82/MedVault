@@ -10,10 +10,10 @@ function Navbar() {
           </div>
           <div className='flex justify-center flex-1 space-x-8 text-center'>
             <h1 className='font-medium text-sm text-white'>
-              <a href='/prescription'>Prescription</a>
+              <a href='/trade-data'>Add Trade</a>
             </h1>
-            <h1 className='font-medium text-sm text-white'>
-              <a href='/pharmacy'>Pharmacy</a>
+            <h1 className='font-medium text-sm text-white ml-[40px]'>
+              <a href='/trade'>Share</a>
             </h1>
           </div>
           <div className='text-white'>

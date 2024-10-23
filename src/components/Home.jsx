@@ -13,7 +13,7 @@ const Home = () => {
           <div className="md:w-[478px]">
             <div className="tag text-black mt-[100px]">Version 1.0 is here</div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter bg-gradient-to-b from-blue-700 via-blue-500 to-blue-500 text-transparent bg-clip-text mt-6">
-            Confidential Health Records at 
+            Confidential Trade Data powered by  
             <motion.div
             className="md:w-[478px] md:mt-[30px] "
             initial={{ x: 300, opacity: 0 }}  // Start off-screen to the right

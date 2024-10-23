@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tesseract from 'tesseract.js';
 
-const PrescriptionUploader = () => {
+const TradeData = () => {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState('');
     const [extractedText, setExtractedText] = useState('');
@@ -57,11 +57,11 @@ const PrescriptionUploader = () => {
         <section
         className="pt-0 flex justify-center items-center flex-col pb-20 md:pb-10 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip h-screen w-screen"
       >
-            <h1 className="text-lg font-medium mb-4">Add Prescription privately</h1>
+            <h1 className="text-lg font-medium mb-4">Share Trade privately</h1>
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-md">
                 <div className="mb-4">
                     <label className="block text-lg font-medium text-blue-700 mb-2">
-                        New prescription
+                       Add trade
                     </label>
                     <input
                         type="file"
@@ -137,4 +137,4 @@ const PrescriptionUploader = () => {
     );
 };
 
-export default PrescriptionUploader;
+export default TradeData;
