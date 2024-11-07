@@ -33,7 +33,8 @@ const TradeData = () => {
 
                 const data = extractDescriptionsAndItems(text);
                 setExtractedData(data);
-                console.log("Extracted text:", text);
+                console.log(" data:", data);
+                console.log("text",text);
             } catch (err) {
                 console.error('Error processing data:', err);
                 setError('An error occurred while extracting data. Please try again.');
