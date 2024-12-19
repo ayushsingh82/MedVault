@@ -97,8 +97,8 @@ const TradeData = () => {
     };
 
     return (
-        <section className="pt-0 flex justify-center items-center flex-col pb-20 md:pb-10 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip h-screen w-screen">
-            <h1 className="text-lg font-medium mb-4">Share Trade Privately</h1>
+        <section className="pt-0 flex justify-center items-center flex-col pb-20 md:pb-10 bg-gradient-to-r from-blue-700 via-blue-300 to-blue-500 overflow-x-clip h-screen w-screen">
+            <h1 className="text-lg font-medium mb-4">Share Medical Privately</h1>
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-md">
                 <div className="mb-4">
                     <label className="block text-lg font-medium text-blue-700 mb-2">Add Trade</label>
@@ -157,7 +157,7 @@ const TradeData = () => {
                     className={`w-full px-4 py-2 bg-blue-600 text-white rounded-md ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                     disabled={loading}
                 >
-                    {loading ? 'Processing...' : 'Submit'}
+                    {loading ? 'Processing...' : 'Add Medical Data to Rivalz Storage'}
                 </button>
 
                 {error && <p className="text-red-500 mt-4">{error}</p>}

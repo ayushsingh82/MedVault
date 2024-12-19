@@ -44,7 +44,7 @@ const Trade = () => {
   };
 
   return (
-    <section className="pt-0 flex justify-center items-center flex-col pb-20 md:pb-10 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip h-screen w-screen">
+    <section className="pt-0 flex justify-center items-center flex-col pb-20 md:pb-10 bg-gradient-to-r from-blue-700 via-blue-300 to-blue-500 overflow-x-clip h-screen w-screen">
       <div className="container mx-auto px-4">
         <h1 className="text-xl font-medium text-center text-black mb-6"> Access Management</h1>
         <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
