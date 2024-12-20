@@ -11,10 +11,10 @@ function Navbar() {
           </div>
           <div className='flex justify-center flex-1 space-x-8 text-center'>
             <h1 className='font-medium text-sm text-white'>
-              <Link to='/trade-data'>Add Trade</Link>
+              <Link to='/trade-data'>Add Medical Data</Link>
             </h1>
             <h1 className='font-medium text-sm text-white ml-[40px]'>
-              <Link to='/trade'>Share</Link>
+              <Link to='/trade'>Give Access</Link>
             </h1>
           </div>
           <div className='text-white'>
