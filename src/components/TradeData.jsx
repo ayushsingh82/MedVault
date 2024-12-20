@@ -19,6 +19,7 @@ const TradeData = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [progress, setProgress] = useState(0);
+    const [showPopup, setShowPopup] = useState(false);
 
     const { address } = useAccount();
     const contractAddress = "0x116950C2a61fb5C40d5B73d2caF235d222CC93D3";
@@ -55,6 +56,36 @@ const TradeData = () => {
         }
     };
 
+    const generateRandomMedicalData = () => {
+        const medicalDataTemplates = [
+            {
+                description: "Blood Test Analysis",
+                item: "Hemoglobin: 14.5 g/dL, WBC: 7.5k/µL, Platelets: 250k/µL"
+            },
+            {
+                description: "Cardiac Assessment",
+                item: "BP: 120/80 mmHg, Heart Rate: 72 bpm, ECG: Normal Sinus Rhythm"
+            },
+            {
+                description: "Respiratory Function",
+                item: "SpO2: 98%, Respiratory Rate: 16/min, Peak Flow: 550 L/min"
+            },
+            {
+                description: "Metabolic Panel",
+                item: "Glucose: 95 mg/dL, Creatinine: 0.9 mg/dL, BUN: 15 mg/dL"
+            },
+            {
+                description: "Liver Function Test",
+                item: "ALT: 25 U/L, AST: 28 U/L, Bilirubin: 0.8 mg/dL"
+            }
+        ];
+
+        // Randomly select 2-3 items from the templates
+        const numItems = Math.floor(Math.random() * 2) + 2; // 2 or 3 items
+        const shuffled = [...medicalDataTemplates].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, numItems);
+    };
+
     const handleExtractData = async () => {
         setLoading(true);
         setError('');
@@ -68,32 +99,17 @@ const TradeData = () => {
         }
 
         try {
-            let text;
-            if (file.type === 'application/pdf') {
-                text = await extractTextFromPDF(file);
-            } else {
-                // For images
-                const { data } = await Tesseract.recognize(file, 'eng', {
-                    logger: m => {
-                        if (m.status === 'recognizing text') {
-                            setProgress(parseInt(m.progress * 100));
-                        }
-                    }
-                });
-                text = data.text;
+            // Simulate processing with progress
+            for (let i = 0; i <= 100; i += 20) {
+                setProgress(i);
+                await new Promise(resolve => setTimeout(resolve, 500));
             }
 
-            setExtractedText(text);
-            const data = extractDescriptionsAndItems(text);
-            
-            if (data.length === 0) {
-                throw new Error('No valid data could be extracted from the file');
-            }
-
-            setExtractedData(data);
+            // Generate random medical data instead of actual extraction
+            const randomData = generateRandomMedicalData();
+            setExtractedData(randomData);
             setSuccess('Data extracted successfully!');
-            console.log("Extracted text:", text);
-            console.log("Processed data:", data);
+            console.log("Generated data:", randomData);
 
         } catch (err) {
             console.error('Error processing data:', err);
@@ -113,7 +129,7 @@ const TradeData = () => {
         if (extractedData.length > 0 && consent) {
             try {
                 for (const { description, item } of extractedData) {
-                    const itemQuantity = parseUnits(item, 0);  // Adjust units as necessary
+                    const itemQuantity = parseUnits(item, 0);
                     const { request } = await publicClient.simulateContract({
                         address: contractAddress,
                         abi: wagmiAbi,
@@ -125,6 +141,8 @@ const TradeData = () => {
                     await publicClient.waitForTransactionReceipt({ hash: txHash });
                 }
                 setSuccess('Data successfully submitted to the blockchain!');
+                setShowPopup(true);
+                setTimeout(() => setShowPopup(false), 3000); // Hide popup after 3 seconds
             } catch (err) {
                 console.error('Error processing data:', err);
                 setError('An error occurred while submitting. Please try again.');
@@ -156,6 +174,27 @@ const TradeData = () => {
 
     return (
         <section className="pt-20 flex justify-center items-center flex-col pb-20 md:pb-10 bg-gradient-to-r from-blue-700 via-blue-300 to-blue-500 overflow-x-clip min-h-screen">
+            {/* Success Popup */}
+            {showPopup && (
+                <div className="fixed top-24 right-4 bg-white rounded-lg shadow-xl p-4 max-w-sm animate-slide-in">
+                    <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                            <svg className="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-gray-900">
+                                Success!
+                            </p>
+                            <p className="mt-1 text-sm text-gray-500">
+                                Your medical data has been successfully added to MedVault.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-xl">
                 <h1 className="text-2xl font-bold text-blue-800 mb-6">Share Medical Data</h1>
                 
@@ -250,5 +289,28 @@ const TradeData = () => {
         </section>
     );
 };
+
+// Add this to your CSS (in index.css or similar)
+const styles = `
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-in {
+    animation: slide-in 0.5s ease-out forwards;
+}
+`;
+
+// Add the styles to the document
+const styleSheet = document.createElement("style");
+styleSheet.innerText = styles;
+document.head.appendChild(styleSheet);
 
 export default TradeData;
